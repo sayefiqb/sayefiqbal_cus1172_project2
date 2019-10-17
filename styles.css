@@ -1,0 +1,186 @@
+#content {
+  margin: 50px;
+}
+
+#content_body {
+  padding-left: 60px;
+  background-color: E6E6E6;
+  padding: 20px;
+}
+
+#question_body {
+  margin: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: center;
+  background-color: white;
+  border-radius: 15px;
+  padding-left: 25px;
+  /* font-size: 32; */
+}
+
+#number {
+  margin: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: center;
+  background-color: white;
+  font-size: 68;
+  border-radius: 15px;
+}
+
+#option {
+  margin: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: center;
+  background-color: white;
+  border-radius: 15px;
+}
+
+#result_tab {
+  padding: 30px;
+  padding-top: 20px;
+  background-color: 003366;
+}
+
+.tab_header {
+  background-color: white;
+  margin-top: 20px;
+  font-size: 20px;
+  color: black;   
+}
+
+.tab_value {
+    background-color: white;
+    margin-top: 20px;
+    font-size: 30px;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.next{
+    padding: 15px;
+    padding-right: 65px;
+    padding-left: 65px;
+    border: none;
+    background-color: 003366;
+    color: whitesmoke;
+    font-size: 24px;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 280px;
+}
+
+.option_button{
+    color: black;
+    font-size: 28;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.option_button:hover{
+    background-color: crimson;
+}
+
+.option_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#input{
+    width: 300px;
+    height: 100px;
+    background-color: E6E6E6;
+    border: none;
+    border-radius: 10px;
+    font-size: 68;
+}
+
+#question_body{
+   background-color: khaki;
+    font-size: 42;
+}
+
+#question_answered{
+    font-size: 50px;
+   padding-left: 100px;
+   background-color: lightblue;
+}
+
+#total{
+    font-size: 50px;
+    padding-left: 85px;
+    background-color: lightblue;
+}
+
+.image{
+    cursor: pointer;
+    padding-left: 20px;
+}
+
+.checkbox{
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+
+#qa{
+    /* padding-left: px; */
+    font-size: 24;
+}
+
+#record{
+    padding-left: 80px;
+    font-size: 24;
+}
+
+#score{
+    padding-left: 85px;
+    font-size: 24;
+}
+
+#start{
+    margin-top: 200px;
+    margin-left: 240px;
+}
+
+#submit{
+    padding: 15px;
+    padding-right: 65px;
+    padding-left: 65px;
+    border: none;
+    background-color: 003366;
+    font-size: 24px;
+    color: whitesmoke;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 50px;
+
+}
+
+#navbar{
+    background-color: 003366;
+    color: whitesmoke;
+    font-size: 40;
+    font: bold;
+    justify-content: center;
+    padding: 25px;
+    padding-left: 540px;
+    padding-right:480px;
+}
+
+#retake{
+    margin-left: 220px;
+}

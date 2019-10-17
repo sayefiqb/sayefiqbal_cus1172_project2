@@ -1,0 +1,244 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+
+    <script>
+      let questions = [
+        {
+          question: "Where is the digit 4 in",
+          number: "348",
+          options: `<div class="option_content">
+            <button onclick=checkanswer(10,1) class="option_button">Ones place</button>
+            <button onclick=checkanswer(10,10) class="option_button">Tens place</button>
+            <button onclick=checkanswer(10,100) class="option_button">Hundreds place</button>
+            </div>`,
+          type: "mcq"
+        },
+        {
+          question: "Which is a multiple of",
+          number: "5",
+          options: `<div class="option_content">
+            <button onclick=checkanswer(40,33) class="option_button">33</button>
+            <button onclick=checkanswer(40,40) class="option_button">40</button>
+            <button onclick=checkanswer(40,17) class="option_button">17</button>
+            </div>`,
+          type: "mcq"
+        },
+        {
+          question: "Which graph resembles 1/4 and 3/4?",
+          options: ["graph1", "graph2"],
+          options: `<div id="image_div" class="row">
+            <img class="image" onclick=checkanswer('graph2','graph1') src="./resources/graph1.png" width="320px" height="360px">
+            <img  class="image" onclick=checkanswer('graph2','graph2') src="./resources/graph2.png" width="320px" height="360px">
+          </div>`,
+          type: "image"
+        },
+        {
+          question: "Which digit is in the thousands place of",
+          number: "5693",
+          options: `<div class="option_content">
+            <button onclick=checkanswer(5,6) class="option_button">6</button>
+            <button onclick=checkanswer(5,3) class="option_button">3</button>
+            <button onclick=checkanswer(5,5) class="option_button">5</button>
+            <button onclick=checkanswer(5,9) class="option_button">9</button>
+            </div>`,
+          type: "mcq"
+        },
+        {
+          question: "What is",
+          number: "4 x 32",
+          options: `<form action="">
+          <input id="input" placeholder="Type here" type="text">
+          <button id='submit' onclick=getInputAnswer()>Submit</button>
+            </form>`,
+          type: "input"
+        }
+      ];
+
+      let total = 0;
+      let current = 0;
+      let question_answered = 0;
+ 
+       function getInputAnswer(){
+           let value = document.getElementById('input').value
+           document.getElementById(
+            "question_answered"
+          ).innerHTML = question_answered;
+        question_answered = question_answered + 1;
+           checkanswer("168",value);
+       } 
+
+      function checkanswer(expected, actual) {
+        if (expected === actual) {
+          console.log("correct answwer");
+          if (total < 100) {
+            total = total + 20;
+            
+            document.getElementById("total").innerHTML = total;
+            let tick = document.createElement('img');
+            tick.setAttribute('class','checkbox');
+            tick.setAttribute('src','./resources/check.jpg')
+            document.getElementById('check').appendChild(tick);
+            if(total===20){
+              document.getElementById("option").innerHTML = "<h1 style='color: green'>Nice Work</h1>";
+            }
+
+            if(total===40){
+              document.getElementById("option").innerHTML = "<h1 style='color: green'>Good job!</h1>";
+            }
+
+            if(total===60){
+              document.getElementById("option").innerHTML = "<h1 style='color: green'>Keep up the good work!</h1>";
+            }
+
+            if(total===80){
+              document.getElementById("option").innerHTML = "<h1 style='color: green'>Impressive!</h1>";
+            }
+
+            if(total===100){
+              document.getElementById("option").innerHTML = "<h1 style='color: green'>Excellent!</h1>";
+            }
+          }
+        } else {
+          console.log("incorrect answer");
+          document.getElementById("option").innerHTML =
+            "<h1 style='color: red'>Oops wrong answer!</h1>";
+
+            let cross = document.createElement('img');
+            cross.setAttribute('class','checkbox');
+            cross.setAttribute('src','./resources/cross.jpg')
+            document.getElementById('check').appendChild(cross);
+        }
+
+      }
+
+      function inttialize(){
+        document.getElementById('question_body').style.display ="none";
+        document.getElementById('number').style.display = "none";
+        document.getElementById('option').innerHTML = `<h1>You Scored ${total}</h1>`;
+        document.getElementById('next').style.display="none";
+        let retake = document.createElement('button');
+        document.getElementById('retake').style.display = "";
+      }
+
+      function setDefault(){
+        current = 0;
+        total = 0;
+        question_answered = 0;
+        document.getElementById('total').innerHTML = "0";
+        document.getElementById('retake').style.display="none";
+        document.getElementById('check').innerHTML = ''
+        main();
+      }
+
+      function main() {
+        //render new question in question body
+        //render new number if there is any in number div
+        //show new options based on type of question
+        //update scores and records
+        if(current===5){
+           inttialize();
+        }
+
+        if (current <= 4) {
+          let currentQuestion = getNextQuestion(current);
+          let question = currentQuestion["question"];
+          let nextNumber = currentQuestion["number"];
+          let type = currentQuestion["type"];
+          let options = currentQuestion["options"];
+          document.getElementById('next').style.display = "";
+          document.getElementById('next').innerHTML = "Next";
+          document.getElementById("question_body").innerHTML = question;
+          document.getElementById("option").innerHTML = options;
+          document.getElementById('start').style.display = 'none'
+          document.getElementById('next').style.display ='';
+          document.getElementById('question_body').style.display = '';
+          document.getElementById('number').style.display = '';
+          document.getElementById('option').style.display = '';
+
+          if (type === "mcq") {
+            document.getElementById("number").style.display = "";
+            let number = (document.getElementById(
+              "number"
+            ).innerHTML = nextNumber);
+          }
+
+          if (type === "image") {
+            document.getElementById("number").style.display = "none";
+          }
+
+          if (type === "input") {
+            document.getElementById("number").style.display = "";
+            let number = (document.getElementById(
+              "number"
+            ).innerHTML = nextNumber);
+          }
+          document.getElementById(
+            "question_answered"
+          ).innerHTML = question_answered;
+        question_answered = question_answered + 1;
+        }
+         
+        current = current + 1;
+      }
+
+      function getNextQuestion(index) {
+        return questions[index];
+      }
+    </script>
+  </head>
+  <body>
+    <div id="navbar"class="container-fluid">
+      Qu!z-M3
+    </div>
+    <div class="container-fluid">
+      <div id="content" class="row">
+        <div id="content_body" class="col-lg-8">
+          <div id="question_body" class="row"  style="display: none">
+          </div>
+          <div id="number" class="row"  style="display: none">
+          </div>
+
+          <div id="option" class="row"  style="display: none">
+          </div>
+          <button id="start" class="next" onclick="main()">Start Quiz</button>
+          <button id="next" class="next" onclick="main()" style="display: none">Next</button>
+          <button id="retake" class="next" onclick="setDefault()" style="display: none">Retake Quiz</button>
+          <div id="mybutton">
+        </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div id="result_tab" class="col-lg-3">
+          <div id="qa" class="tab_header">
+            Questions Answered
+          </div>
+          <div id="question_answered" class="tab_value">
+            0
+          </div>
+          <div id="record" class="tab_header">
+            Record
+          </div>
+          <div id="check" class="tab_value">
+            
+          </div>
+          <div id="score" class="tab_header">
+            Score
+          </div>
+          <div id="total" class="tab_value">
+            0
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
